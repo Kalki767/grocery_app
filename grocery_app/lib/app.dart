@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_app/features/grocery/presentation/bloc/grocery_bloc.dart';
 import 'package:grocery_app/features/grocery/presentation/pages/burger_detail_page.dart';
+import 'package:grocery_app/features/grocery/presentation/pages/splash_page.dart';
 import 'package:grocery_app/injection_container.dart';
 
 import 'features/grocery/presentation/pages/home_page.dart';
@@ -15,8 +16,9 @@ class App extends StatelessWidget {
     return BlocProvider<GroceryBloc>(
       create: (context) => sl<GroceryBloc>(), // Provide your BLoC instance here
       child: MaterialApp(
-        initialRoute: '/home_page',
+        initialRoute: '/',
         routes: {
+          '/': (context) => SplashPage(),
           '/home_page': (context) => const HomePage(),
           '/burgerDetail': (context) => BurgerDetailPage(),
         },
