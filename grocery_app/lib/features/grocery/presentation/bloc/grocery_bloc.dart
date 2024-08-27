@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:grocery_app/core/constants/urls.dart';
 import 'package:grocery_app/features/grocery/domain/entities/grocery_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_app/features/grocery/domain/usecases/get_groceries_usecase.dart';
@@ -27,6 +28,7 @@ class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
         result.fold((failure) {
           emit(const ErrorState(message: 'an error happens'));
         }, (groceryEntities) {
+          Urls.groceries = groceryEntities;
           emit(LoadedGroceriesState(groceryEntities: groceryEntities));
         });
       },
@@ -47,7 +49,15 @@ class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
       },
       transformer: debounce(const Duration(milliseconds: 500)),
     );
+    on<FilterGroceryEvent>((event, emit) async {
+      final filteredGroceries = Urls.groceries.where((grocery) {
+        final searchQuery = event.text.toLowerCase();
+        return grocery.title.toLowerCase().contains(searchQuery);
+      }).toList();
+      emit(LoadedGroceriesState(groceryEntities: filteredGroceries));
+    });
   }
+
   EventTransformer<T> debounce<T>(Duration duration) {
     return (events, mapper) => events.debounceTime(duration).flatMap(mapper);
   }

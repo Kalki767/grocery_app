@@ -9,3 +9,9 @@ class GetGroceryEvent extends GroceryEvent {
 
   GetGroceryEvent({required this.id});
 }
+
+class FilterGroceryEvent extends GroceryEvent {
+  final String text;
+
+  FilterGroceryEvent({required this.text});
+}

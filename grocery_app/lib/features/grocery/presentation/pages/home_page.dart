@@ -32,41 +32,55 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, // Changed background color to white
-        elevation: 0, // Removed shadow for a cleaner look
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Center(
           child: Text(
             'Burger',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.black, // Changed text color to black for contrast
+              color: Colors.black,
             ),
           ),
         ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.settings, color: Colors.black),
-              onPressed: () {}),
-        ],
+        // Removed the settings icon
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             // Search text field
-            TextField(
-              controller: _searchController,
-              onChanged: _onSearchChanged,
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200], // Light grey background for shading
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: TextField(
+                controller: _searchController,
+                onChanged: (value) {
+                  context
+                      .read<GroceryBloc>()
+                      .add(FilterGroceryEvent(text: value));
+                },
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search, color: Colors.black),
+                  hintText: 'Search...',
+                  filled: true,
+                  fillColor: Colors
+                      .transparent, // Make sure background color from BoxDecoration shows
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 12, horizontal: 16), // Center text vertically
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
             SizedBox(height: 16.0),
