@@ -1,0 +1,14 @@
+{
+    "id": "66be460f71fccd1506882d24",
+    "title": "Cheese Burger",
+    "imageUrl": "https://res.cloudinary.com/g5-mobile-track/image/upload/v1723747446/assessment/xhvgqvpt7pghwae",
+    "rating" : 4.9,
+    "price" : 10,
+    "discount": 6,
+    "description" : "description",
+    "options" : [{
+        "id":"66be474571fccd1506882d26",
+        "name": "Add Cheese",
+        "price": 0.5
+    }]
+}

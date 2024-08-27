@@ -9,7 +9,7 @@ class GroceryEntity extends Equatable {
   final num price;
   final num discount;
   final String description;
-  final List<OptionsEntity>? options;
+  final List<OptionsEntity> options;
 
   const GroceryEntity(
       {required this.id,
@@ -19,7 +19,7 @@ class GroceryEntity extends Equatable {
       required this.price,
       required this.discount,
       required this.description,
-      this.options});
+      required this.options});
 
   @override
   // TODO: implement props

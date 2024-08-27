@@ -26,7 +26,8 @@ void main() {
       rating: 4.9,
       price: 10,
       discount: 6,
-      description: 'description');
+      description: 'description',
+      options: []);
 
   const List<GroceryEntity> groceryEntityList = [groceryEntity];
   test(

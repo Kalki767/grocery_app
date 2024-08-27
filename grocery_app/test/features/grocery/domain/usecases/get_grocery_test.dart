@@ -26,7 +26,8 @@ void main() {
       rating: 4.9,
       price: 10,
       discount: 6,
-      description: 'description');
+      description: 'description',
+      options: []);
   test(
       'should test if the getgrocery usecase is sending the data properly to the repository',
       () async {

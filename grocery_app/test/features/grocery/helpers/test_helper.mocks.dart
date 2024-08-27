@@ -3,14 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:grocery_app/core/errors/failures.dart' as _i5;
+import 'package:grocery_app/core/errors/failures.dart' as _i6;
+import 'package:grocery_app/features/grocery/data/data_sources/grocery_remote_datasource.dart'
+    as _i7;
 import 'package:grocery_app/features/grocery/domain/entities/grocery_entity.dart'
-    as _i6;
-import 'package:grocery_app/features/grocery/domain/repositories/grocery_repository.dart'
     as _i3;
+import 'package:grocery_app/features/grocery/domain/repositories/grocery_repository.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -36,34 +38,44 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
+class _FakeGroceryEntity_1 extends _i1.SmartFake implements _i3.GroceryEntity {
+  _FakeGroceryEntity_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [GroceryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGroceryRepository extends _i1.Mock implements _i3.GroceryRepository {
+class MockGroceryRepository extends _i1.Mock implements _i4.GroceryRepository {
   MockGroceryRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.GroceryEntity>>> getGroceries() =>
+  _i5.Future<_i2.Either<_i6.Failure, List<_i3.GroceryEntity>>> getGroceries() =>
       (super.noSuchMethod(
         Invocation.method(
           #getGroceries,
           [],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, List<_i6.GroceryEntity>>>.value(
-                _FakeEither_0<_i5.Failure, List<_i6.GroceryEntity>>(
+            _i5.Future<_i2.Either<_i6.Failure, List<_i3.GroceryEntity>>>.value(
+                _FakeEither_0<_i6.Failure, List<_i3.GroceryEntity>>(
           this,
           Invocation.method(
             #getGroceries,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.GroceryEntity>>>);
+      ) as _i5.Future<_i2.Either<_i6.Failure, List<_i3.GroceryEntity>>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.GroceryEntity>> getGrocery(
+  _i5.Future<_i2.Either<_i6.Failure, _i3.GroceryEntity>> getGrocery(
           String? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -71,13 +83,48 @@ class MockGroceryRepository extends _i1.Mock implements _i3.GroceryRepository {
           [id],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i6.GroceryEntity>>.value(
-                _FakeEither_0<_i5.Failure, _i6.GroceryEntity>(
+            _i5.Future<_i2.Either<_i6.Failure, _i3.GroceryEntity>>.value(
+                _FakeEither_0<_i6.Failure, _i3.GroceryEntity>(
           this,
           Invocation.method(
             #getGrocery,
             [id],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.GroceryEntity>>);
+      ) as _i5.Future<_i2.Either<_i6.Failure, _i3.GroceryEntity>>);
+}
+
+/// A class which mocks [GroceryRemoteDatasource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGroceryRemoteDatasource extends _i1.Mock
+    implements _i7.GroceryRemoteDatasource {
+  MockGroceryRemoteDatasource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<List<_i3.GroceryEntity>> getGroceries() => (super.noSuchMethod(
+        Invocation.method(
+          #getGroceries,
+          [],
+        ),
+        returnValue:
+            _i5.Future<List<_i3.GroceryEntity>>.value(<_i3.GroceryEntity>[]),
+      ) as _i5.Future<List<_i3.GroceryEntity>>);
+
+  @override
+  _i5.Future<_i3.GroceryEntity> getGrocery(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getGrocery,
+          [id],
+        ),
+        returnValue: _i5.Future<_i3.GroceryEntity>.value(_FakeGroceryEntity_1(
+          this,
+          Invocation.method(
+            #getGrocery,
+            [id],
+          ),
+        )),
+      ) as _i5.Future<_i3.GroceryEntity>);
 }
