@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_app/features/grocery/presentation/bloc/grocery_bloc.dart';
 import 'package:grocery_app/features/grocery/presentation/pages/burger_detail_page.dart';
+import 'package:grocery_app/features/grocery/presentation/pages/my_basket_page.dart';
 import 'package:grocery_app/features/grocery/presentation/pages/splash_page.dart';
 import 'package:grocery_app/injection_container.dart';
 
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
           '/': (context) => SplashPage(),
           '/home_page': (context) => const HomePage(),
           '/burgerDetail': (context) => BurgerDetailPage(),
+          '/basket_page': (context) => MyBasketPage(),
         },
         debugShowCheckedModeBanner: false,
       ),

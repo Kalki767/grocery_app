@@ -116,7 +116,18 @@ class BurgerDetailPage extends StatelessWidget {
                           ),
                           Spacer(),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/basket_page',
+                                  arguments: GroceryEntity(
+                                      id: args.id,
+                                      title: args.title,
+                                      imageUrl: args.imageUrl,
+                                      rating: args.rating,
+                                      price: args.price,
+                                      discount: args.discount,
+                                      description: args.description,
+                                      options: args.options));
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 50, vertical: 12),

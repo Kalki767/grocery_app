@@ -37,11 +37,10 @@ class GroceryRemoteDatasourceImpl extends GroceryRemoteDatasource {
   @override
   Future<GroceryEntity> getGrocery(String id) async {
     final response = await _client.get(Uri.parse(Urls.getgroceryById(id)));
-    
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      final val = GroceryModel.fromJson(data['data']);
+      final val = GroceryModel.fromJson(data);
       final result = GroceryModel.toEntity(val);
       return result;
     } else {

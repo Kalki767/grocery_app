@@ -3,17 +3,21 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
+import 'dart:convert' as _i9;
+import 'dart:typed_data' as _i11;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:grocery_app/core/errors/failures.dart' as _i6;
+import 'package:grocery_app/core/errors/failures.dart' as _i7;
 import 'package:grocery_app/features/grocery/data/data_sources/grocery_remote_datasource.dart'
-    as _i7;
+    as _i8;
 import 'package:grocery_app/features/grocery/domain/entities/grocery_entity.dart'
     as _i3;
 import 'package:grocery_app/features/grocery/domain/repositories/grocery_repository.dart'
-    as _i4;
+    as _i5;
+import 'package:http/http.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -48,34 +52,55 @@ class _FakeGroceryEntity_1 extends _i1.SmartFake implements _i3.GroceryEntity {
         );
 }
 
+class _FakeResponse_2 extends _i1.SmartFake implements _i4.Response {
+  _FakeResponse_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeStreamedResponse_3 extends _i1.SmartFake
+    implements _i4.StreamedResponse {
+  _FakeStreamedResponse_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [GroceryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGroceryRepository extends _i1.Mock implements _i4.GroceryRepository {
+class MockGroceryRepository extends _i1.Mock implements _i5.GroceryRepository {
   MockGroceryRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.Either<_i6.Failure, List<_i3.GroceryEntity>>> getGroceries() =>
+  _i6.Future<_i2.Either<_i7.Failure, List<_i3.GroceryEntity>>> getGroceries() =>
       (super.noSuchMethod(
         Invocation.method(
           #getGroceries,
           [],
         ),
         returnValue:
-            _i5.Future<_i2.Either<_i6.Failure, List<_i3.GroceryEntity>>>.value(
-                _FakeEither_0<_i6.Failure, List<_i3.GroceryEntity>>(
+            _i6.Future<_i2.Either<_i7.Failure, List<_i3.GroceryEntity>>>.value(
+                _FakeEither_0<_i7.Failure, List<_i3.GroceryEntity>>(
           this,
           Invocation.method(
             #getGroceries,
             [],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.Failure, List<_i3.GroceryEntity>>>);
+      ) as _i6.Future<_i2.Either<_i7.Failure, List<_i3.GroceryEntity>>>);
 
   @override
-  _i5.Future<_i2.Either<_i6.Failure, _i3.GroceryEntity>> getGrocery(
+  _i6.Future<_i2.Either<_i7.Failure, _i3.GroceryEntity>> getGrocery(
           String? id) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -83,48 +108,284 @@ class MockGroceryRepository extends _i1.Mock implements _i4.GroceryRepository {
           [id],
         ),
         returnValue:
-            _i5.Future<_i2.Either<_i6.Failure, _i3.GroceryEntity>>.value(
-                _FakeEither_0<_i6.Failure, _i3.GroceryEntity>(
+            _i6.Future<_i2.Either<_i7.Failure, _i3.GroceryEntity>>.value(
+                _FakeEither_0<_i7.Failure, _i3.GroceryEntity>(
           this,
           Invocation.method(
             #getGrocery,
             [id],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.Failure, _i3.GroceryEntity>>);
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i3.GroceryEntity>>);
 }
 
 /// A class which mocks [GroceryRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGroceryRemoteDatasource extends _i1.Mock
-    implements _i7.GroceryRemoteDatasource {
+    implements _i8.GroceryRemoteDatasource {
   MockGroceryRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i3.GroceryEntity>> getGroceries() => (super.noSuchMethod(
+  _i6.Future<List<_i3.GroceryEntity>> getGroceries() => (super.noSuchMethod(
         Invocation.method(
           #getGroceries,
           [],
         ),
         returnValue:
-            _i5.Future<List<_i3.GroceryEntity>>.value(<_i3.GroceryEntity>[]),
-      ) as _i5.Future<List<_i3.GroceryEntity>>);
+            _i6.Future<List<_i3.GroceryEntity>>.value(<_i3.GroceryEntity>[]),
+      ) as _i6.Future<List<_i3.GroceryEntity>>);
 
   @override
-  _i5.Future<_i3.GroceryEntity> getGrocery(String? id) => (super.noSuchMethod(
+  _i6.Future<_i3.GroceryEntity> getGrocery(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getGrocery,
           [id],
         ),
-        returnValue: _i5.Future<_i3.GroceryEntity>.value(_FakeGroceryEntity_1(
+        returnValue: _i6.Future<_i3.GroceryEntity>.value(_FakeGroceryEntity_1(
           this,
           Invocation.method(
             #getGrocery,
             [id],
           ),
         )),
-      ) as _i5.Future<_i3.GroceryEntity>);
+      ) as _i6.Future<_i3.GroceryEntity>);
+}
+
+/// A class which mocks [Client].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHttpClient extends _i1.Mock implements _i4.Client {
+  MockHttpClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<_i4.Response> head(
+    Uri? url, {
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #head,
+          [url],
+          {#headers: headers},
+        ),
+        returnValue: _i6.Future<_i4.Response>.value(_FakeResponse_2(
+          this,
+          Invocation.method(
+            #head,
+            [url],
+            {#headers: headers},
+          ),
+        )),
+      ) as _i6.Future<_i4.Response>);
+
+  @override
+  _i6.Future<_i4.Response> get(
+    Uri? url, {
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #get,
+          [url],
+          {#headers: headers},
+        ),
+        returnValue: _i6.Future<_i4.Response>.value(_FakeResponse_2(
+          this,
+          Invocation.method(
+            #get,
+            [url],
+            {#headers: headers},
+          ),
+        )),
+      ) as _i6.Future<_i4.Response>);
+
+  @override
+  _i6.Future<_i4.Response> post(
+    Uri? url, {
+    Map<String, String>? headers,
+    Object? body,
+    _i9.Encoding? encoding,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #post,
+          [url],
+          {
+            #headers: headers,
+            #body: body,
+            #encoding: encoding,
+          },
+        ),
+        returnValue: _i6.Future<_i4.Response>.value(_FakeResponse_2(
+          this,
+          Invocation.method(
+            #post,
+            [url],
+            {
+              #headers: headers,
+              #body: body,
+              #encoding: encoding,
+            },
+          ),
+        )),
+      ) as _i6.Future<_i4.Response>);
+
+  @override
+  _i6.Future<_i4.Response> put(
+    Uri? url, {
+    Map<String, String>? headers,
+    Object? body,
+    _i9.Encoding? encoding,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #put,
+          [url],
+          {
+            #headers: headers,
+            #body: body,
+            #encoding: encoding,
+          },
+        ),
+        returnValue: _i6.Future<_i4.Response>.value(_FakeResponse_2(
+          this,
+          Invocation.method(
+            #put,
+            [url],
+            {
+              #headers: headers,
+              #body: body,
+              #encoding: encoding,
+            },
+          ),
+        )),
+      ) as _i6.Future<_i4.Response>);
+
+  @override
+  _i6.Future<_i4.Response> patch(
+    Uri? url, {
+    Map<String, String>? headers,
+    Object? body,
+    _i9.Encoding? encoding,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #patch,
+          [url],
+          {
+            #headers: headers,
+            #body: body,
+            #encoding: encoding,
+          },
+        ),
+        returnValue: _i6.Future<_i4.Response>.value(_FakeResponse_2(
+          this,
+          Invocation.method(
+            #patch,
+            [url],
+            {
+              #headers: headers,
+              #body: body,
+              #encoding: encoding,
+            },
+          ),
+        )),
+      ) as _i6.Future<_i4.Response>);
+
+  @override
+  _i6.Future<_i4.Response> delete(
+    Uri? url, {
+    Map<String, String>? headers,
+    Object? body,
+    _i9.Encoding? encoding,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [url],
+          {
+            #headers: headers,
+            #body: body,
+            #encoding: encoding,
+          },
+        ),
+        returnValue: _i6.Future<_i4.Response>.value(_FakeResponse_2(
+          this,
+          Invocation.method(
+            #delete,
+            [url],
+            {
+              #headers: headers,
+              #body: body,
+              #encoding: encoding,
+            },
+          ),
+        )),
+      ) as _i6.Future<_i4.Response>);
+
+  @override
+  _i6.Future<String> read(
+    Uri? url, {
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #read,
+          [url],
+          {#headers: headers},
+        ),
+        returnValue: _i6.Future<String>.value(_i10.dummyValue<String>(
+          this,
+          Invocation.method(
+            #read,
+            [url],
+            {#headers: headers},
+          ),
+        )),
+      ) as _i6.Future<String>);
+
+  @override
+  _i6.Future<_i11.Uint8List> readBytes(
+    Uri? url, {
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #readBytes,
+          [url],
+          {#headers: headers},
+        ),
+        returnValue: _i6.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
+      ) as _i6.Future<_i11.Uint8List>);
+
+  @override
+  _i6.Future<_i4.StreamedResponse> send(_i4.BaseRequest? request) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #send,
+          [request],
+        ),
+        returnValue:
+            _i6.Future<_i4.StreamedResponse>.value(_FakeStreamedResponse_3(
+          this,
+          Invocation.method(
+            #send,
+            [request],
+          ),
+        )),
+      ) as _i6.Future<_i4.StreamedResponse>);
+
+  @override
+  void close() => super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
