@@ -32,8 +32,8 @@ class BasketItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.network(
               imageUrl,
-              height: 80,
-              width: 80,
+              height: 30,
+              width: 30,
               fit: BoxFit.cover,
             ),
           ),

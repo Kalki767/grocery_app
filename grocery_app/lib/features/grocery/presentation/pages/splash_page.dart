@@ -40,7 +40,7 @@ class _SplashPageState extends State<SplashPage>
     );
 
     // Navigate to HomePage after 5 seconds
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 10), () {
       Navigator.pushReplacementNamed(context, '/home_page');
     });
   }
@@ -101,7 +101,7 @@ class _SplashPageState extends State<SplashPage>
                     ),
                   ),
                 ),
-                SizedBox(height: 80), // Space from the bottom
+                SizedBox(height: 100), // Space from the bottom
               ],
             ),
           ),
